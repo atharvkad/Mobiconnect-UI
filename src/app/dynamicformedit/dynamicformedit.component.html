@@ -1,0 +1,137 @@
+<div class="container-fluid ">
+  <h1 class="mt-10">Edit Employee details</h1>  
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+          <label>Name  :</label>
+          <input [class.is-invalid]="registrationForm.get('userName')?.invalid && 
+                                              registrationForm.get('userName')?.touched" type="text" class="form-control"
+              formControlName="userName">
+          <small [class.d-none]="registrationForm.get('userName')?.valid || registrationForm.get('userName')?.untouched" class="text-danger">Username is required</small>
+      </div>
+      <div class="form-group">
+          <label>Email  :</label>
+          <input type="text"  class="form-control"  formControlName="email" >
+          <small *ngIf="registrationForm.controls.email.errors?.['email'] && registrationForm.controls.email.touched" class="form-text text-danger">Valid Email is required</small>
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <div class="input-group">
+        <span>
+          <select id="countryCode" placeholder="select countrycode" formControlName="countryCode" class="form-control custom-select size">
+            <option value="" disabled selected>Select country code</option>  
+            <option *ngFor="let countryCode of countryCodes" [value]="countryCode.value">{{ countryCode.value }}</option>
+            </select>
+        </span>
+        
+        <input type="number" [class.is-invalid]="registrationForm.get('phone')?.invalid && 
+        registrationForm.get('phone')?.touched" class="form-control"  formControlName="phone" >
+        </div>
+        <small [class.d-none]="registrationForm.get('phone')?.valid || registrationForm.get('phone')?.untouched" class="text-danger">Phone number is required</small>
+        <!-- <small *ngIf="registrationForm.get('phoneNumber').errors?.['minlength'] || registrationForm.get('phoneNumber')?.errors?.['maxlength']" class="text-danger">Phone number is short</small> -->
+    </div>
+    
+    <div class="form-group">
+      <label >Date of Birth :</label>
+      <input formControlName="dob" id="dob" type="date" class="form-control">
+      <small [class.d-none]="registrationForm.get('dob')?.valid || registrationForm.get('dob')?.untouched" class="text-danger">Select valid Date of birth</small>
+       <!-- <span class="text-danger" *ngIf="dob && dob.invalid && dob.touched">Please select a valid start date</span>  -->
+    </div>
+
+
+
+
+
+
+      <div class="form-group">
+        <label>Gender</label><br>
+        
+          <select id="gender" value="" formControlName="gender" class="form-control  custom-select">
+            <option value="" disabled selected>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female </option>
+            <option value="Prefer not to say">Prefer not to say</option>
+      
+          </select>
+          
+          
+          
+          
+        
+      
+      </div>
+
+
+
+
+
+
+
+        <div class="form-group">
+          <label>Designation :</label>
+          <!-- <input [class.is-invalid]="registrationForm.get('designation')?.invalid && 
+                                                                registrationForm.get('designation')?.touched" type="text"
+            class="form-control" formControlName="designation">
+          <small [class.d-none]="registrationForm.get('designation')?.valid || registrationForm.get('designation')?.untouched"
+            class="text-danger">Designation is required</small> -->
+            <div class="input-group" ><select  formControlName="designation" class="form-control custom-select" >
+              <option value="" disabled selected>Select Designation</option>
+              <option *ngFor="let option of designation" [value]="option" >{{ option }}</option>
+            </select></div>
+            
+        </div>
+      
+        <div class="form-group">
+          <label>Name of Manager :</label>
+          <input [class.is-invalid]="registrationForm.get('manager')?.invalid && 
+                                                      registrationForm.get('manager')?.touched" type="text"
+            class="form-control" formControlName="manager" value="">
+      
+        </div>
+      
+      
+      
+      
+      <div formGroupName="Address">
+          <label>Address :</label>
+          <div class="form-group">
+            <label>Street </label>
+            <input type="text" class="form-control" formControlName="street" >
+          </div>
+          <div class="form-group">
+            <label>City </label>
+            <input type="text" class="form-control" formControlName="city" >
+          </div>
+          <div class="form-group">
+              <label>Postal code </label>
+              <input type="number" class="form-control" formControlName="postalCode" >
+            </div>
+          <div class="form-group">
+            <label>State </label>
+            <input type="text" class="form-control" formControlName="state" >
+          </div>
+          <div class="form-group">
+          
+            <label>Country </label>
+            <!-- <input type="text" class="form-control" formControlName="country" > -->
+             <div class="input-group" ><select  formControlName="country" class="form-control custom-select" >
+              <option value="" disabled selected>Select Country</option>
+              <option *ngFor="let option of countryname" [value]="option" >{{ option }}</option>
+            </select></div>
+          
+           
+      </div>
+      </div>
+        
+        
+        
+        <button type="submit" class="btn btn-primary mt-2" [disabled]="registrationForm.invalid">Save Changes</button><br>
+        <button type="button" (click)="loadApidata()" class="btn btn-secondary mt-2 ml-4">Load sample Data</button>
+        
+        
+    
+    
+      </form>
+    <!-- {{registrationForm.value | json}}
+    {{registrationForm.get('userName')?.valid}} -->
+    
+</div>

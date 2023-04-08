@@ -1,0 +1,36 @@
+.nav-link:hover {
+    background-color: #000000;
+    color: #fff;
+  }
+
+  nav a.active{
+    font-weight: bolder;
+  }
+  nav a.nav-link:hover{
+    cursor: pointer;
+  }
+
+  .logo{
+    margin-left: 10px;
+  }
+  #dropdownMenuButton{
+    border: none;
+  }
+ .ani{
+    padding-top: 10px;
+    background: linear-gradient(to right, #ffffff, #a8a8a8, #ffffff);
+    background-size: 600% 600%;
+    animation: gradient 10s ease infinite;
+  }
+  
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
